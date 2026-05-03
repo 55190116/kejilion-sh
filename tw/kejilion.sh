@@ -6073,7 +6073,7 @@ net.ipv4.udp_wmem_min = 16384
 net.ipv4.tcp_notsent_lowat = 16384"
 	fi
 
-	# ── 游戏服场景额外：低延迟优先 ──
+	# ── 遊戲服場景額外：低延遲優先 ──
 	local GAME_EXTRA=""
 	if [ "$scene" = "game" ]; then
 		GAME_EXTRA="
@@ -6205,7 +6205,7 @@ SYSCTL
 			skipped=$((skipped + 1))
 		fi
 	done < "$CONF"
-	echo -e "${gl_lv}已應用${applied} 项参数${skipped:+，跳过 ${skipped}項不支援的參數}${gl_bai}"
+	echo -e "${gl_lv}已應用${applied}項參數${skipped:+，跳過${skipped}項不支援的參數}${gl_bai}"
 
 	# ── 透明大頁面 ──
 	if [ -f /sys/kernel/mm/transparent_hugepage/enabled ]; then
@@ -6770,7 +6770,7 @@ kj_ssh_read_host_port() {
 		if kj_ssh_validate_host "$KJ_SSH_HOST"; then
 			break
 		fi
-		echo "错误: 请输入有效的服务器地址。"
+		echo "錯誤: 請輸入有效的伺服器位址。"
 	done
 
 	while true; do
@@ -6798,7 +6798,7 @@ kj_ssh_read_host_user_port() {
 		if kj_ssh_validate_user "$KJ_SSH_USER"; then
 			break
 		fi
-		echo "错误: 用户名格式不正确。"
+		echo "錯誤: 使用者名稱格式不正確。"
 	done
 }
 
@@ -7097,7 +7097,7 @@ mount_partition() {
 		return 1
 	fi
 
-	echo "分區已成功掛載到$MOUNT_POINT"
+	echo "分割區已成功掛載到$MOUNT_POINT"
 
 	# 檢查 /etc/fstab 是否已經存在 UUID 或掛載點
 	if grep -qE "UUID=$UUID|[[:space:]]$MOUNT_POINT[[:space:]]" /etc/fstab; then
@@ -7693,7 +7693,7 @@ linux_tools() {
 			  clear
 			  install curl
 			  clear
-			  echo "工具已安装，使用方法如下："
+			  echo "工具已安裝，使用方法如下："
 			  curl --help
 			  send_stats "安裝curl"
 			  ;;
@@ -9057,7 +9057,7 @@ linux_ldnmp() {
 
 	  4)
 	  clear
-	  # 可道云桌面
+	  # 可道雲桌面
 	  webname="可道雲桌面"
 	  send_stats "安裝$webname"
 	  echo "開始部署$webname"
@@ -9180,7 +9180,7 @@ linux_ldnmp() {
 	  echo "密碼:$dbusepasswd"
 	  echo ""
 	  echo "redis地址: redis"
-	  echo "redis密码: 默认不填写"
+	  echo "redis密碼: 預設不填寫"
 	  echo "redis 埠: 6379"
 	  echo ""
 	  echo "網址url: https://$yuming"
@@ -10679,7 +10679,7 @@ EOF
 
 	add-openclaw-provider-interactive() {
 		send_stats "OpenClaw API新增"
-		echo "=== 互動式新增 OpenClaw Provider (全量模型) ==="
+		echo "=== 互動式加入 OpenClaw Provider (全量模型) ==="
 
 		# 1. Provider 名稱
 		read -erp "請輸入 Provider 名稱 (如: deepseek):" provider_name
@@ -10802,7 +10802,7 @@ openclaw_api_manage_list() {
 					unchecked) latency_color="$gl_bai" ;;
 				esac
 
-				printf '%b\n' "[$idx] ${name} | API: ${base_url} | 协议: ${api_type}| 模型數量:${gl_huang}${model_count}${gl_bai}| 延遲/狀態:${latency_color}${latency_txt}${gl_bai}"
+				printf '%b\n' "[$idx] ${name} | API: ${base_url}| 協議:${api_type}| 模型數量:${gl_huang}${model_count}${gl_bai}| 延遲/狀態:${latency_color}${latency_txt}${gl_bai}"
 				;;
 		esac
 	done < <(python3 - "$config_file" <<-'PY'
@@ -11019,7 +11019,7 @@ if not base_url or not api_key or not isinstance(model_list, list) or not model_
     raise SystemExit(3)
 
 if api not in SUPPORTED_APIS:
-    print(f'ℹ️ provider {target} 当前 api={api}，但脚本已不再探测/纠正协议；请手动设置为 openai-completions 或 openai-responses')
+    print(f'ℹ️ provider {target} 目前 api={api}，但腳本已不再探測/修正協定；請手動設定為 openai-completions 或 openai-responses')
 
 protocol_msg = None
 
@@ -12191,7 +12191,7 @@ PYTHON_EOF
 					echo "🗑️ 正在刪除/停用插件:$plugin_id"
 					openclaw plugins disable "$plugin_id" >/dev/null 2>&1
 					if openclaw plugins uninstall "$plugin_id"; then
-						echo "✅ 已卸載:$plugin_id"
+						echo "✅ 已卸载: $plugin_id"
 					else
 						echo "⚠️ 卸載失敗，可能為預先安裝插件，僅停用:$plugin_id"
 					fi
@@ -13351,7 +13351,7 @@ except Exception:
     print("取得記憶狀態失敗（JSON 解析錯誤）")
     raise SystemExit(1)
 if not isinstance(data, list) or len(data) == 0:
-    print("未檢測到任何智能體記憶狀態。")
+    print("未检测到任何智能体记忆状态。")
     raise SystemExit(0)
 first = True
 for entry in data:
@@ -13878,7 +13878,7 @@ EOF
 			echo "======================================="
 			echo "1. QMD"
 			echo "2. Local"
-			echo "3. Auto（自動選擇）"
+			echo "3. Auto（自动选择）"
 			echo "0. 返回上一級"
 			echo "---------------------------------------"
 			read -e -p "請輸入你的選擇:" auto_choice
@@ -13913,7 +13913,7 @@ EOF
 			qmd)
 				openclaw_memory_config_set "memory.backend" "qmd"
 				if [ $? -ne 0 ]; then
-					echo "❌ 寫入配置失敗"
+					echo "❌ 写入配置失败"
 					return 1
 				fi
 				openclaw_memory_config_set "memory.qmd.command" "qmd" >/dev/null 2>&1
@@ -14225,7 +14225,7 @@ EOF
 $fl_agent_lines
 EOF
 						openclaw gateway restart
-						echo "✅ 已對所有智慧體執行 force 重建並自動重新啟動網關"
+						echo "✅ 已對所有智慧型體執行 force 重建並自動重新啟動網關"
 					fi
 				else
 					openclaw memory index
@@ -14608,7 +14608,7 @@ except Exception:
 		openclaw config set tools.elevated.enabled true >/dev/null 2>&1
 		openclaw config set tools.exec.strictInlineEval false >/dev/null 2>&1
 
-		echo "正在瓦解宿主機攔截防禦..."
+		echo "正在瓦解宿主机拦截防御..."
 		# 這裡的 full 和 off 將徹底繞過底層宿主機的 exec 審批系統
 		openclaw_permission_update_exec_approvals "full" "off" "full"
 
@@ -14620,7 +14620,7 @@ except Exception:
 		send_stats "OpenClaw權限-恢復官方默認"
 		openclaw_permission_require_openclaw || return 1
 
-		echo "清理應用層強制覆蓋..."
+		echo "清理应用层强制覆盖..."
 		openclaw config unset tools.profile >/dev/null 2>&1
 		openclaw config unset tools.exec.security >/dev/null 2>&1
 		openclaw config unset tools.exec.ask >/dev/null 2>&1
@@ -15223,7 +15223,7 @@ openclaw_backup_restore_menu() {
 		while true; do
 			clear
 			echo "======================================="
-			echo "OpenClaw 备份与还原"
+			echo "OpenClaw 備份與還原"
 			echo "======================================="
 			openclaw_backup_render_file_list
 			echo "---------------------------------------"
@@ -15331,7 +15331,7 @@ openclaw_backup_restore_menu() {
 
 		domains=$(openclaw_find_webui_domain)
 		if [ -n "$domains" ]; then
-			echo "網域地址："
+			echo "網域名稱地址："
 			echo "$domains" | while read d; do
 				echo "https://${d}/#token=${token}"
 			done
@@ -17008,7 +17008,7 @@ while true; do
 			ip_address
 			echo "已經安裝完成"
 			check_docker_app_ip
-			echo "初始使用者名稱密碼均為: admin"
+			echo "初始使用者名稱密碼皆為: admin"
 		}
 
 		docker_app_update() {

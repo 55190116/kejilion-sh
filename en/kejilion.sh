@@ -890,7 +890,7 @@ close_port() {
 		iptables -D INPUT -p tcp --dport $port -j ACCEPT 2>/dev/null
 		iptables -D INPUT -p udp --dport $port -j ACCEPT 2>/dev/null
 
-		# Add a shutdown rule
+		# Add shutdown rule
 		if ! iptables -C INPUT -p tcp --dport $port -j DROP 2>/dev/null; then
 			iptables -I INPUT 1 -p tcp --dport $port -j DROP
 		fi
@@ -2942,7 +2942,7 @@ while true; do
 			rm -f /home/docker/${docker_name}_port.conf
 
 			sed -i "/\b${app_id}\b/d" /home/docker/appno.txt
-			echo "App has been uninstalled"
+			echo "App uninstalled"
 			send_stats "uninstall$docker_name"
 			;;
 
@@ -3221,7 +3221,7 @@ f2b_sshd() {
 
 # Basic parameter configuration: ban duration (bantime), time window (findtime), number of retries (maxretry)
 # illustrate:
-# - Prioritize writing to /etc/fail2ban/jail.d/sshd.local (overwrites the default jail configuration and is not easy to lose when upgrading)
+# - Prioritize writing to /etc/fail2ban/jail.d/sshd.local (overrides the default jail configuration and is not easy to lose when upgrading)
 # - If it is Alpine and the jail names are different, still write sshd.local; Fail2Ban will match according to the jail name.
 f2b_basic_config() {
 	root_use
@@ -3602,7 +3602,7 @@ ldnmp_Proxy_backend() {
 list_stream_services() {
 
 	STREAM_DIR="/home/web/stream.d"
-	printf "%-25s %-18s %-25s %-20s\n" "Service name" "Communication type" "local address" "Backend address"
+	printf "%-25s %-18s %-25s %-20s\n" "Service name" "Communication type" "Local address" "Backend address"
 
 	if [ -z "$(ls -A "$STREAM_DIR")" ]; then
 		return
@@ -4392,7 +4392,7 @@ frps_panel() {
 				close_port 8055 8056
 
 				sed -i "/\b${app_id}\b/d" /home/docker/appno.txt
-				echo "App has been uninstalled"
+				echo "App uninstalled"
 				;;
 			5)
 				echo "Reverse intranet penetration service into domain name access"
@@ -4489,7 +4489,7 @@ frpc_panel() {
 				close_port 8055
 
 				sed -i "/\b${app_id}\b/d" /home/docker/appno.txt
-				echo "App has been uninstalled"
+				echo "App uninstalled"
 				;;
 
 			4)
@@ -5530,7 +5530,7 @@ dd_xitong() {
 				;;
 
 			  41)
-				send_stats "Reinstall windows 11"
+				send_stats "Reinstall Windows 11"
 				dd_xitong_2
 				bash InstallNET.sh -windows 11 -lang "cn"
 				reboot
@@ -6600,9 +6600,9 @@ send_stats "Command Favorites"
 bash <(curl -l -s ${gh_proxy}raw.githubusercontent.com/byJoey/cmdbox/refs/heads/main/install.sh)
 }
 
-# Create a backup
+# Create backup
 create_backup() {
-	send_stats "Create a backup"
+	send_stats "Create backup"
 	local TIMESTAMP=$(date +"%Y%m%d%H%M%S")
 
 	# Prompt user for backup directory
@@ -6644,7 +6644,7 @@ create_backup() {
 		echo "- $path"
 	done
 
-	# Create a backup
+	# Create backup
 	echo "Creating backup$BACKUP_NAME..."
 	install tar
 	tar -czvf "$BACKUP_DIR/$BACKUP_NAME" "${BACKUP_PATHS[@]}"
@@ -7213,7 +7213,7 @@ disk_manager() {
 	send_stats "Hard disk management function"
 	while true; do
 		clear
-		echo "Hard drive partition management"
+		echo "Hard disk partition management"
 		echo -e "${gl_huang}This feature is under internal testing and should not be used in a production environment.${gl_bai}"
 		echo "------------------------"
 		list_partitions
@@ -7392,7 +7392,7 @@ run_task() {
 	else
 		echo "Sync failed! Please check the following:"
 		echo "1. Is the network connection normal?"
-		echo "2. Whether the remote host is accessible"
+		echo "2. Is the remote host accessible?"
 		echo "3. Is the authentication information correct?"
 		echo "4. Do the local and remote directories have correct access permissions?"
 	fi
@@ -7609,7 +7609,7 @@ linux_tools() {
 
   while true; do
 	  clear
-	  # send_stats "Basic tools"
+	  # send_stats "Basic Tools"
 	  echo -e "basic tools"
 
 	  tools=(
@@ -14099,7 +14099,7 @@ EOF
 		echo "document:$file"
 		echo "Total number of rows:$total_lines"
 		read -e -p "Please enter the starting line (Press Enter to default to the end of$default_linesOK):" start_line
-		read -e -p "Please enter the number of rows to display (default is to press Enter$default_lines）: " count
+		read -e -p "Please enter the number of displayed lines (press Enter to default$default_lines）: " count
 		[ -z "$count" ] && count=$default_lines
 		if [ -z "$start_line" ]; then
 			if [ "$total_lines" -le "$count" ]; then
@@ -14169,7 +14169,7 @@ EOF
 	openclaw_memory_search_test() {
 		read -e -p "Enter search keywords:" query
 		if [ -z "$query" ]; then
-			echo "关键词不能为空。"
+			echo "Keywords cannot be empty."
 			return 1
 		fi
 		echo "Searching memory..."
@@ -15988,7 +15988,7 @@ while true; do
 					rm -rf /home/docker/mail
 
 					sed -i "/\b${app_id}\b/d" /home/docker/appno.txt
-					echo "App has been uninstalled"
+					echo "App uninstalled"
 					;;
 
 				*)
@@ -16042,7 +16042,7 @@ while true; do
 			docker rm -f db
 			docker rmi -f mongo:latest
 			rm -rf /home/docker/mongo
-			echo "App has been uninstalled"
+			echo "App uninstalled"
 		}
 
 		docker_app_plus
@@ -16140,7 +16140,7 @@ while true; do
 		docker_app_uninstall() {
 			cd /home/docker/cloud/ && docker compose down --rmi all
 			rm -rf /home/docker/cloud
-			echo "App has been uninstalled"
+			echo "App uninstalled"
 		}
 
 		docker_app_plus
@@ -17026,7 +17026,7 @@ while true; do
 			docker rmi -f grafana/grafana:latest
 
 			rm -rf /home/docker/monitoring
-			echo "App has been uninstalled"
+			echo "App uninstalled"
 		}
 
 		docker_app_plus
@@ -17253,7 +17253,7 @@ while true; do
 		docker_app_uninstall() {
 			cd  /home/docker/dify/docker/ && docker compose down --rmi all
 			rm -rf /home/docker/dify
-			echo "App has been uninstalled"
+			echo "App uninstalled"
 		}
 
 		docker_app_plus
@@ -17305,7 +17305,7 @@ while true; do
 		docker_app_uninstall() {
 			cd  /home/docker/new-api/ && docker compose down --rmi all
 			rm -rf /home/docker/new-api
-			echo "App has been uninstalled"
+			echo "App uninstalled"
 		}
 
 		docker_app_plus
@@ -17346,7 +17346,7 @@ while true; do
 			cd /opt
 			rm -rf jumpserver-installer*/
 			rm -rf jumpserver
-			echo "App has been uninstalled"
+			echo "App uninstalled"
 		}
 
 		docker_app_plus
@@ -17409,7 +17409,7 @@ while true; do
 		docker_app_uninstall() {
 			cd  /home/docker/ragflow/docker/ && docker compose down --rmi all
 			rm -rf /home/docker/ragflow
-			echo "App has been uninstalled"
+			echo "App uninstalled"
 		}
 
 		docker_app_plus
@@ -17737,7 +17737,7 @@ while true; do
 		docker_app_uninstall() {
 			cd /home/docker/moontv/ && docker compose down --rmi all
 			rm -rf /home/docker/moontv
-			echo "App has been uninstalled"
+			echo "App uninstalled"
 		}
 
 		docker_app_plus
@@ -17958,7 +17958,7 @@ while true; do
 		  docker_app_uninstall() {
 			  cd /home/docker/linkwarden && docker compose down --rmi all
 			  rm -rf /home/docker/linkwarden
-			  echo "App has been uninstalled"
+			  echo "App uninstalled"
 		  }
 
 		  docker_app_plus
@@ -18008,7 +18008,7 @@ while true; do
 			  cd "$(ls -dt */ | head -n 1)"
 			  docker compose down --rmi all
 			  rm -rf /home/docker/jitsi
-			  echo "App has been uninstalled"
+			  echo "App uninstalled"
 		  }
 
 		  docker_app_plus
@@ -18144,7 +18144,7 @@ while true; do
 		  docker_app_uninstall() {
 			  cd /home/docker/${docker_name} && docker compose down --rmi all
 			  rm -rf /home/docker/${docker_name}
-			  echo "App has been uninstalled"
+			  echo "App uninstalled"
 		  }
 
 		  docker_app_plus
@@ -18371,7 +18371,7 @@ while true; do
 		docker_app_uninstall() {
 			cd /home/docker/gitea/ && docker compose down --rmi all
 			rm -rf /home/docker/gitea
-			echo "App has been uninstalled"
+			echo "App uninstalled"
 		}
 
 		docker_app_plus
@@ -18509,7 +18509,7 @@ while true; do
 		docker_app_uninstall() {
 			cd /home/docker/paperless/ && docker compose down --rmi all
 			rm -rf /home/docker/paperless
-			echo "App has been uninstalled"
+			echo "App uninstalled"
 		}
 
 		docker_app_plus
@@ -18563,7 +18563,7 @@ while true; do
 		docker_app_uninstall() {
 			cd /home/docker/2fauth/ && docker compose down --rmi all
 			rm -rf /home/docker/2fauth
-			echo "App has been uninstalled"
+			echo "App uninstalled"
 		}
 
 		docker_app_plus
@@ -18796,7 +18796,7 @@ while true; do
 		docker_app_uninstall() {
 			cd /home/docker/dsm/ && docker compose down --rmi all
 			rm -rf /home/docker/dsm
-			echo "App has been uninstalled"
+			echo "App uninstalled"
 		}
 
 		docker_app_plus
@@ -18867,7 +18867,7 @@ while true; do
 		docker_app_uninstall() {
 			cd  /home/docker/MoneyPrinterTurbo/ && docker compose down --rmi all
 			rm -rf /home/docker/MoneyPrinterTurbo
-			echo "App has been uninstalled"
+			echo "App uninstalled"
 		}
 
 		docker_app_plus
@@ -18936,7 +18936,7 @@ while true; do
 		docker_app_uninstall() {
 			cd  /home/docker/umami/ && docker compose down --rmi all
 			rm -rf /home/docker/umami
-			echo "App has been uninstalled"
+			echo "App uninstalled"
 		}
 
 		docker_app_plus
@@ -19077,7 +19077,7 @@ discourse,yunsou,ahhhhfs,nsgame,gying" \
 		docker_app_uninstall() {
 			cd  /home/docker/LangBot/docker/ && docker compose down --rmi all
 			rm -rf /home/docker/LangBot
-			echo "App has been uninstalled"
+			echo "App uninstalled"
 		}
 
 		docker_app_plus
@@ -19147,7 +19147,7 @@ discourse,yunsou,ahhhhfs,nsgame,gying" \
 		docker_app_uninstall() {
 			cd  /home/docker/karakeep/docker/ && docker compose down --rmi all
 			rm -rf /home/docker/karakeep
-			echo "App has been uninstalled"
+			echo "App uninstalled"
 		}
 
 		docker_app_plus
@@ -21553,7 +21553,7 @@ echo "------------------------"
 echo -e "${gl_zi}V.PS 6.9 dollars per month Tokyo Softbank 2 cores 1G memory 20G hard drive 1T traffic per month${gl_bai}"
 echo -e "${gl_bai}URL: https://vps.hosting/cart/tokyo-cloud-kvm-vps/?id=148&?affid=1355&?affid=1355${gl_bai}"
 echo "------------------------"
-echo -e "${gl_kjlan}More popular VPS offers${gl_bai}"
+echo -e "${gl_kjlan}More popular VPS deals${gl_bai}"
 echo -e "${gl_bai}Website: https://kejilion.pro/topvps/${gl_bai}"
 echo "------------------------"
 echo ""

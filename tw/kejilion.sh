@@ -1227,7 +1227,7 @@ iptables_panel() {
 add_swap() {
 	local new_swap=$1  # 获取传入的参数
 
-	# 取得目前系統中所有的 swap 分割區
+	# 取得目前系統中所有的 swap 分區
 	local swap_partitions=$(grep -E '^/dev/' /proc/swaps | awk '{print $1}')
 
 	# 遍歷並刪除所有的 swap 分割區
@@ -10679,7 +10679,7 @@ EOF
 
 	add-openclaw-provider-interactive() {
 		send_stats "OpenClaw API新增"
-		echo "=== 互動式加入 OpenClaw Provider (全量模型) ==="
+		echo "=== 互動式新增 OpenClaw Provider (全量模型) ==="
 
 		# 1. Provider 名稱
 		read -erp "請輸入 Provider 名稱 (如: deepseek):" provider_name
@@ -12191,7 +12191,7 @@ PYTHON_EOF
 					echo "🗑️ 正在刪除/停用插件:$plugin_id"
 					openclaw plugins disable "$plugin_id" >/dev/null 2>&1
 					if openclaw plugins uninstall "$plugin_id"; then
-						echo "✅ 已卸载: $plugin_id"
+						echo "✅ 已卸載:$plugin_id"
 					else
 						echo "⚠️ 卸載失敗，可能為預先安裝插件，僅停用:$plugin_id"
 					fi
@@ -13351,7 +13351,7 @@ except Exception:
     print("取得記憶狀態失敗（JSON 解析錯誤）")
     raise SystemExit(1)
 if not isinstance(data, list) or len(data) == 0:
-    print("未检测到任何智能体记忆状态。")
+    print("未檢測到任何智能體記憶狀態。")
     raise SystemExit(0)
 first = True
 for entry in data:
@@ -13878,7 +13878,7 @@ EOF
 			echo "======================================="
 			echo "1. QMD"
 			echo "2. Local"
-			echo "3. Auto（自动选择）"
+			echo "3. Auto（自動選擇）"
 			echo "0. 返回上一級"
 			echo "---------------------------------------"
 			read -e -p "請輸入你的選擇:" auto_choice
@@ -13913,7 +13913,7 @@ EOF
 			qmd)
 				openclaw_memory_config_set "memory.backend" "qmd"
 				if [ $? -ne 0 ]; then
-					echo "❌ 写入配置失败"
+					echo "❌ 寫入配置失敗"
 					return 1
 				fi
 				openclaw_memory_config_set "memory.qmd.command" "qmd" >/dev/null 2>&1
@@ -14225,7 +14225,7 @@ EOF
 $fl_agent_lines
 EOF
 						openclaw gateway restart
-						echo "✅ 已對所有智慧型體執行 force 重建並自動重新啟動網關"
+						echo "✅ 已對所有智慧體執行 force 重建並自動重新啟動網關"
 					fi
 				else
 					openclaw memory index
@@ -14608,7 +14608,7 @@ except Exception:
 		openclaw config set tools.elevated.enabled true >/dev/null 2>&1
 		openclaw config set tools.exec.strictInlineEval false >/dev/null 2>&1
 
-		echo "正在瓦解宿主机拦截防御..."
+		echo "正在瓦解宿主機攔截防禦..."
 		# 這裡的 full 和 off 將徹底繞過底層宿主機的 exec 審批系統
 		openclaw_permission_update_exec_approvals "full" "off" "full"
 
@@ -14620,7 +14620,7 @@ except Exception:
 		send_stats "OpenClaw權限-恢復官方默認"
 		openclaw_permission_require_openclaw || return 1
 
-		echo "清理应用层强制覆盖..."
+		echo "清理應用層強制覆蓋..."
 		openclaw config unset tools.profile >/dev/null 2>&1
 		openclaw config unset tools.exec.security >/dev/null 2>&1
 		openclaw config unset tools.exec.ask >/dev/null 2>&1
@@ -15331,7 +15331,7 @@ openclaw_backup_restore_menu() {
 
 		domains=$(openclaw_find_webui_domain)
 		if [ -n "$domains" ]; then
-			echo "網域名稱地址："
+			echo "網域地址："
 			echo "$domains" | while read d; do
 				echo "https://${d}/#token=${token}"
 			done
@@ -17008,7 +17008,7 @@ while true; do
 			ip_address
 			echo "已經安裝完成"
 			check_docker_app_ip
-			echo "初始使用者名稱密碼皆為: admin"
+			echo "初始使用者名稱密碼均為: admin"
 		}
 
 		docker_app_update() {
